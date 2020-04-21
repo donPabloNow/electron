@@ -330,16 +330,16 @@ describe('contextBridge', () => {
               getFunction: () => () => 123
             });
           });
-          expect((await getGCInfo()).functionCount).to.equal(2);
+          expect((await getGCInfo()).functionCount).to.equal(4);
           await callWithBindings(async (root: any) => {
             root.x = [root.example.getFunction()];
           });
-          expect((await getGCInfo()).functionCount).to.equal(3);
+          expect((await getGCInfo()).functionCount).to.equal(5);
           await callWithBindings(async (root: any) => {
             root.x = [];
             root.GCRunner.run();
           });
-          expect((await getGCInfo()).functionCount).to.equal(2);
+          expect((await getGCInfo()).functionCount).to.equal(4);
         });
       }
 
